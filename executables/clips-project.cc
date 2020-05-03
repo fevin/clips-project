@@ -59,3 +59,59 @@ const std::string getClipsCode() {
 ";
     return clips_code;
 }
+
+/* 上边使用的 CLIPS code
+ *
+;; 控制信息
+(deffacts control-info
+  (phase-after exe_rule result)
+)
+
+(defrule phase-transfer
+  (declare (salience -100))
+  ?phase <- (phase ?current)
+  (phase-after ?current ?next)
+=>
+  (retract ?phase)
+  (assert (phase ?next))
+)
+
+;; clips 结果模板
+(deftemplate clips_result
+    (multislot hits)
+)
+
+;; 规则结果模板
+(deftemplate hit
+  (slot k)
+  (slot v)
+)
+
+;; 默认规则结果
+(deffacts default_clips_result
+  (clips_result (hits nil))
+)
+
+;; 获取规则执行结果
+(deffunction get-clips-result ()
+  (nth 1 (find-fact ((?fact clips_result)) TRUE)))
+
+;; 生成结果 hits
+(defrule RES_result
+  (phase result)
+  (not (DISABLE_RES_RESULT))
+  ?current <- (clips_result)
+=>
+  (assert (DISABLE_RES_RESULT))
+  (modify ?current (hits (find-all-facts ((?hit hit)) (neq ?hit:v nil))))
+)
+
+;; 测试规则
+(defrule R1
+  (phase "exe_rule")
+  (var1 1)
+  =>
+  (assert (hit (k "testrule1") (v 1) ))
+)
+
+*/

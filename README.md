@@ -1,6 +1,6 @@
 # clips-project
 本项目为 `CLIPS` 规则引擎应用的 `demo`，演示了如何将 `CLIPS` 规则引擎嵌入到 `C++` 项目中。
-`CLIPS` 的学习和使用可以参考这篇文章：
+`CLIPS` 的学习和使用可以参考这篇文章：[CLIPS 规则引擎介绍与使用](https://fevin.github.io/post/clips-gui-ze-yin-qing-jie-shao-yu-shi-yong/)
 
 使用示例：
 ```
