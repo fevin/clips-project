@@ -1,0 +1,6 @@
+*.swp
+*.swo
+*.swn
+dist
+build
+tags
